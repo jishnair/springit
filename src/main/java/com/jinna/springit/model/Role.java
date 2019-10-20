@@ -1,4 +1,3 @@
-
 package com.jinna.springit.model;
 
 import lombok.*;
@@ -6,9 +5,8 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.ManyToMany;
+import java.util.Collection;
 
 /**
  * @author j.nair@douglas.de
@@ -19,19 +17,17 @@ import java.util.List;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Link extends Auditable{
+public class Role {
+
     @Id
     @GeneratedValue
-   private Long id;
+    private Long id;
 
     @NonNull
-    private String title;
+    private String name;
 
-    @NonNull
-    private String url;
-
-    @OneToMany(mappedBy = "link")
-    private List<Comment> comments= new ArrayList<>();
+    @ManyToMany(mappedBy = "roles")
+    private Collection<User> users;
 
 
 }
